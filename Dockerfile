@@ -21,10 +21,16 @@ RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o /go/bin/regionmak
 ######## Start a new stage from scratch #######
 FROM alpine:3.9  
 
+ENV DOCKER_API_VERSION='1.40'
+
+
 WORKDIR /root
 
 # Copy the Pre-built binary file from the previous stage
 COPY --from=builder /go/bin/regionmaker .
+
+COPY static /root/static
+COPY templates /root/templates
 
 ENTRYPOINT ["./regionmaker"]
 
@@ -39,4 +45,4 @@ LABEL org.label-schema.description="Sentinel, a Docker Swarm replicas alert disp
 LABEL org.label-schema.url="https://golang.org/"
 LABEL org.label-schema.vendor="Jarza"
 LABEL org.label-schema.version="1"
-LABEL org.label-schema.docker.cmd="docker run -it -v /var/run/docker.sock:/var/run/docker.sock -p 8080:8080 jarzamendia/regionmaker:latest"
+LABEL org.label-schema.docker.cmd="docker run -it -v /var/run/docker.sock:/var/run/docker.sock -v d:/data:/data -p 8080:8080 jarzamendia/regionmaker:1.0.0"

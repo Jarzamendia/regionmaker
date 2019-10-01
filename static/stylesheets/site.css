@@ -4,4 +4,5 @@
     left: 50;
     right: 50;
     position: absolute;
+    border-style: solid;
   }

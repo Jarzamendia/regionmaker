@@ -1,0 +1,250 @@
+<html lang="en">
+<head>
+<title>RegionMaker </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta charset="UTF-8">
+
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+   <link rel="stylesheet" href="/static/stylesheets/site.css">
+   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+   <script src="static/js/sigma.core.js"></script>
+   <script src="static/js/conrad.js"></script>
+   <script src="static/js/utils/sigma.utils.js"></script>
+   <script src="static/js/utils/sigma.polyfills.js"></script>
+   <script src="static/js/sigma.settings.js"></script>
+   <script src="static/js/classes/sigma.classes.dispatcher.js"></script>
+   <script src="static/js/classes/sigma.classes.configurable.js"></script>
+   <script src="static/js/classes/sigma.classes.graph.js"></script>
+   <script src="static/js/classes/sigma.classes.camera.js"></script>
+   <script src="static/js/classes/sigma.classes.quad.js"></script>
+   <script src="static/js/classes/sigma.classes.edgequad.js"></script>
+   <script src="static/js/captors/sigma.captors.mouse.js"></script>
+   <script src="static/js/captors/sigma.captors.touch.js"></script>
+   <script src="static/js/renderers/sigma.renderers.canvas.js"></script>
+   <script src="static/js/renderers/sigma.renderers.webgl.js"></script>
+   <script src="static/js/renderers/sigma.renderers.svg.js"></script>
+   <script src="static/js/renderers/sigma.renderers.def.js"></script>
+   <script src="static/js/renderers/webgl/sigma.webgl.nodes.def.js"></script>
+   <script src="static/js/renderers/webgl/sigma.webgl.nodes.fast.js"></script>
+   <script src="static/js/renderers/webgl/sigma.webgl.edges.def.js"></script>
+   <script src="static/js/renderers/webgl/sigma.webgl.edges.fast.js"></script>
+   <script src="static/js/renderers/webgl/sigma.webgl.edges.arrow.js"></script>
+   <script src="static/js/renderers/canvas/sigma.canvas.labels.def.js"></script>
+   <script src="static/js/renderers/canvas/sigma.canvas.hovers.def.js"></script>
+   <script src="static/js/renderers/canvas/sigma.canvas.nodes.def.js"></script>
+   <script src="static/js/renderers/canvas/sigma.canvas.edges.def.js"></script>
+   <script src="static/js/renderers/canvas/sigma.canvas.edges.curve.js"></script>
+   <script src="static/js/renderers/canvas/sigma.canvas.edges.arrow.js"></script>
+   <script src="static/js/renderers/canvas/sigma.canvas.edges.curvedArrow.js"></script>
+   <script src="static/js/renderers/canvas/sigma.canvas.edgehovers.def.js"></script>
+   <script src="static/js/renderers/canvas/sigma.canvas.edgehovers.curve.js"></script>
+   <script src="static/js/renderers/canvas/sigma.canvas.edgehovers.arrow.js"></script>
+   <script src="static/js/renderers/canvas/sigma.canvas.edgehovers.curvedArrow.js"></script>
+   <script src="static/js/renderers/canvas/sigma.canvas.extremities.def.js"></script>
+   <script src="static/js/renderers/svg/sigma.svg.utils.js"></script>
+   <script src="static/js/renderers/svg/sigma.svg.nodes.def.js"></script>
+   <script src="static/js/renderers/svg/sigma.svg.edges.def.js"></script>
+   <script src="static/js/renderers/svg/sigma.svg.edges.curve.js"></script>
+   <script src="static/js/renderers/svg/sigma.svg.labels.def.js"></script>
+   <script src="static/js/renderers/svg/sigma.svg.hovers.def.js"></script>
+   <script src="static/js/middlewares/sigma.middlewares.rescale.js"></script>
+   <script src="static/js/middlewares/sigma.middlewares.copy.js"></script>
+   <script src="static/js/misc/sigma.misc.animation.js"></script>
+   <script src="static/js/misc/sigma.misc.bindEvents.js"></script>
+   <script src="static/js/misc/sigma.misc.bindDOMEvents.js"></script>
+   <script src="static/js/misc/sigma.misc.drawHovers.js"></script>
+   <script src="static/plugins/sigma.parsers.json/sigma.parsers.json.js"></script>
+   <script src="static/plugins/sigma.plugins.dragNodes/sigma.plugins.dragNodes.js"></script>
+
+</head>
+
+  <body>
+
+    <div id="file" hidden>{{.File}}</div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+      <div class="container">
+        <a class="navbar-brand" href="/">Regionmaker</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/prod">Produção
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/hom">Homologação</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/des">Desenvolvimento</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/sup">Suporte</a>
+            </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="/cms">CMS</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/stream">Streaming</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+    
+      <!-- Modal -->
+      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalCenterTitle">Informações do servidor.</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              ...
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <center><h1 class="mt-5">Visão geral da estrutura Docker - {{.Region}}</h1></center>
+
+      <div class="row">
+          <div id="graph-container"></div>
+      </div>
+
+    </div>
+
+    <script>
+
+    username = getCookie("username")
+
+
+    if ( (username == undefined ) || (username == '')) {
+
+      getUsername()
+
+    }
+
+    var g = {
+      nodes: [],
+      edges: []
+    };
+
+    s = new sigma({
+      graph: g,
+      container: 'container',
+      renderer: {
+        container: 'graph-container',
+        type: 'canvas'
+      },
+      settings: {
+        labelThreshold: 0
+      }
+    });
+
+  
+    var file = document.getElementById("file").textContent;
+
+    sigma.parsers.json(file, s, function() {
+      
+        s.refresh();
+        
+        s.bind('doubleClickNode', function(e) {
+
+            
+            var ip = defaultValue(e.data.node.custom1, "127.0.0.1");
+            var status = defaultValue(e.data.node.custom2, "unknow");
+            var user = defaultValue(e.data.node.custom3, "root");
+
+            var ssh = "ssh -l " + username + "@" + ip
+
+            var txts = e.data.node.custom1 + "  " + e.data.node.custom2;
+
+            $("#myModal").find('.modal-body').text(ssh);
+            $("#myModal").modal()
+
+        });
+
+      });
+    
+      var dragListener = sigma.plugins.dragNodes(s, s.renderers[0]);
+
+      dragListener.bind('startdrag', function(event) {
+        console.log(event);
+      });
+      dragListener.bind('drag', function(event) {
+        console.log(event);
+      });
+      dragListener.bind('drop', function(event) {
+        console.log(event);
+      });
+      dragListener.bind('dragend', function(event) {
+        console.log(event);
+      });
+
+
+      function defaultValue (value, defaultvalue) {
+
+        if (value === undefined) {
+          value = defaultvalue;
+        }
+
+        return value
+
+    }
+
+      function saveCookie(key, value){
+
+        string = key + "=" + value
+        document.cookie = string
+
+      }
+
+      function getCookie(cname) {
+        var name = cname + "=";
+        var decodedCookie = decodeURIComponent(document.cookie);
+        var ca = decodedCookie.split(';');
+        for(var i = 0; i <ca.length; i++) {
+          var c = ca[i];
+          while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+          }
+          if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+          }
+        }
+        return "";
+      }
+    
+      function getUsername() { 
+
+            var doc = prompt("Qual é o seu usuário?", 
+                "");
+
+            if (doc != null) {
+                
+              saveCookie("username", doc)
+                
+            } 
+        } 
+
+
+    </script>
+
+  </body>
+</html>

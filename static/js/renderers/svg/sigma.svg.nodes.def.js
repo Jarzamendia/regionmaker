@@ -44,6 +44,7 @@
       circle.setAttributeNS(null, 'cy', node[prefix + 'y']);
       circle.setAttributeNS(null, 'r', node[prefix + 'size']);
 
+
       // Updating only if not freestyle
       if (!settings('freeStyle'))
         circle.setAttributeNS(

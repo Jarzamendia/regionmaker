@@ -1,0 +1,17 @@
+{
+ "edges": [],
+ "nodes": [
+  {
+   "color": "#008000",
+   "id": "n0",
+   "label": "docker-desktop",
+   "size": 1,
+   "x": 0,
+   "y": 0,
+   "custom1": "192.168.65.3",
+   "custom2": "active",
+   "custom3": "ready",
+   "custom4": "prd"
+  }
+ ]
+}
